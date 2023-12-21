@@ -1,6 +1,26 @@
 <template>
   <div class="h-full">
-    <h3 class="text-2xl font-bold text-left py-2">Product Management</h3>
+    <div class="top flex justify-between">
+      <h3 class="text-2xl font-bold text-left py-2">Product Management</h3>
+      <button
+        class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-xs px-4 py-1 rounded-[16px] shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 flex items-center justify-center gap-[4px]"
+        type="button"
+        @click="showModalName='create-product'"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="16"
+          width="14"
+          viewBox="0 0 448 512"
+          fill="#fff"
+        >
+          <path
+            d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
+          />
+        </svg>
+        Add New Product
+      </button>
+    </div>
     <div class="overflow-x-auto relative sm:rounded-lg body">
       <div
         class="w-full text-sm text-left text-gray-500 dark:text-gray-400 h-full"
@@ -47,16 +67,19 @@
         @updated="updateProduct"
         @close="closeFullModal"
       />
+      <CreateProductVue v-if="showModalName == 'create-product'" @created="updateProduct" @close="closeFullModal"/>
     </FullModal>
   </div>
 </template>
 <script>
 import ProductCard from '~/components/ProductCard.vue'
 import DetailProduct from '~/components/DetailProduct.vue'
+import CreateProductVue from '~/components/CreateProduct.vue'
 export default {
   components: {
     ProductCard,
     DetailProduct,
+    CreateProductVue
   },
   data() {
     return {
@@ -76,7 +99,7 @@ export default {
         this.listProduct = this.listProduct.filter((e) => {
           return e !== null
         })
-        console.log('snap:', snapshot.val())
+        console.log('snap:',snapshot.val())
         console.log('listProduct:', this.listProduct)
       } catch (e) {
         alert(e)

@@ -1,13 +1,13 @@
 <template>
   <FullModal>
     <div
-      class="relative flex flex-col min-w-0 break-words w-[600px] shadow-lg rounded-lg bg-white border-0 rounded-[20px]"
+      class="relative flex flex-col min-w-0 break-words w-[600px] mb-6 shadow-lg rounded-lg bg-white border-0 rounded-[20px]"
       @click.stop
     >
       <div class="rounded-[20px] bg-white mb-0 px-6 py-6">
         <div class="text-center flex justify-between">
           <h6 class="text-blueGray-700 text-xl font-bold text-center w-full">
-            Detail Product
+            Create New Product
           </h6>
         </div>
       </div>
@@ -162,46 +162,41 @@
 </template>
 <script>
 export default {
-  props: {
-    value: {
-      type: Object,
-      default: () => {},
-    },
-  },
   data() {
     return {
       product: {},
       category: {},
       listCategories: [],
       selectCategory: '',
+      lengthCurrent: 0,
     }
   },
   created() {
-    this.product = { ...this.value }
     this.getCategory()
+    this.getProductData()
   },
   methods: {
     close() {
       this.$emit('close')
     },
     updateProduct() {
-      try {
-        this.$fire.database.ref(`Product/${this.product.id}`).set({
-          author: this.product.author,
-          category: this.category.id,
-          content: this.product.content,
-          id: this.product.id,
-          imageURL: this.product.imageURL,
-          name: this.product.name,
-          page: this.product.page,
-          price: this.product.price,
-          quantity: this.product.quantity,
-        })
-        alert('Cập nhật sản phẩm thành công')
-        this.$emit('updated')
-      } catch (e) {
-        alert(e)
-      }
+    //   try {
+    //     this.$fire.database.ref(`Product/${this.product.id}`).set({
+    //       author: this.product.author,
+    //       category: this.category.id,
+    //       content: this.product.content,
+    //       id: this.product.id,
+    //       imageURL: this.product.imageURL,
+    //       name: this.product.name,
+    //       page: this.product.page,
+    //       price: this.product.price,
+    //       quantity: this.product.quantity,
+    //     })
+    //     alert('Cập nhật sản phẩm thành công')
+    //     this.$emit('created')
+    //   } catch (e) {
+    //     alert(e)
+    //   }
     },
     async getCategory() {
       const messageRef = this.$fire.database.ref('categoryitem')
@@ -215,6 +210,18 @@ export default {
       } catch (e) {
         alert(e)
       }
+    },
+    async getProductData() {
+      const messageRef = this.$fire.database.ref('Product')
+      try {
+        const snapshot = await messageRef.once('value')
+        const listProduct = snapshot.val()
+        this.lengthCurrent = listProduct.length
+      } catch (e) {
+        alert(e)
+      }
+      console.log('lengt current:', this.lengthCurrent)
+
     },
   },
 }
