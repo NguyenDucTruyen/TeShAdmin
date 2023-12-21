@@ -8,9 +8,9 @@
         {{ item.name ?? 'null' }}
       </span>
     </div>
-    <div class="w-[18%] py-4 px-2 items-center justify-center flex">
+    <div class="w-[10%] py-4 px-2 items-center justify-center flex">
       <span class="child">
-        {{ item.price ?? 'null' }}
+        {{ item.price ?? 'null' }}$
       </span>
     </div>
     <div class="w-[18%] py-4 px-2 items-center flex">
@@ -23,10 +23,18 @@
         {{ item.author ?? 'null' }}
       </span>
     </div>
-    <div
-      class="w-[10%] py-4 px-2 font-medium text-blue-600 dark:text-blue-500 hover:underline text-center cursor-pointer items-center flex justify-center"
-    >
-      Edit
+    <div class="flex w-[18%] py-4 px-2 justify-center gap-[20px]">
+      <span
+        class="w-[-50%] flex py-4 px-2 font-medium text-red-500 dark:text-red-600 hover:underline text-center cursor-pointer leading-[100px]"
+      >
+        Delete
+      </span>
+      <span
+        class="w-[-50%] flex py-4 px-2 font-medium text-blue-600 dark:text-blue-500 hover:underline text-center cursor-pointer leading-[100px]"
+        @click="showUpdate"
+        >
+        Edit
+      </span>
     </div>
   </div>
 </template>
@@ -42,6 +50,12 @@ export default {
   data() {
     return {}
   },
+  methods: {
+    showUpdate() {
+        console.log('item:',this.item.id)
+      this.$emit('update', this.item.id)
+    },
+  }
 }
 </script>
 
