@@ -101,9 +101,10 @@ export default {
       this.$router.push('/'+name)
     },
     logout() {
-
-      localStorage.removeItem('logged')
-      this.$router.push('/')
+      if(confirm('Bạn có muốn đăng xuất?')) {
+        localStorage.removeItem('logged')
+        this.$router.push('/')
+      }
     }
   },
 }
