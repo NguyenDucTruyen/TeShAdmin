@@ -81,8 +81,10 @@ export default {
       const messageRef = this.$fire.database.ref('Admin')
       try {
         const snapshot = await messageRef.once('value')
-        if(this.username.trim() === snapshot.val().email && this.password.trim() === snapshot.val().password)
+        if(this.username.trim() === snapshot.val().email && this.password.trim() === snapshot.val().password) {
+          localStorage.setItem('logged', JSON.stringify('true'))
           this.$router.push('users')
+        }
         else 
         alert('Login failed')
 
