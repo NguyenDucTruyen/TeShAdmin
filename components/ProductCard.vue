@@ -26,6 +26,7 @@
     <div class="flex w-[18%] py-4 px-2 justify-center gap-[20px]">
       <span
         class="w-[-50%] flex py-4 px-2 font-medium text-red-500 dark:text-red-600 hover:underline text-center cursor-pointer leading-[100px]"
+        @click="deleteProduct"
       >
         Delete
       </span>
@@ -54,6 +55,17 @@ export default {
     showUpdate() {
         console.log('item:',this.item.id)
       this.$emit('update', this.item.id)
+    },
+    deleteProduct() {
+      try {
+        if (confirm('Bạn có muốn xóa sản phẩm này không?')) {
+          this.$fire.database.ref(`Product/${this.item.id}`).set(null)
+          alert('Xóa sản phẩm thành công')
+          this.$emit('deleted')
+        }
+      } catch (e) {
+        alert(e)
+      }
     },
   }
 }

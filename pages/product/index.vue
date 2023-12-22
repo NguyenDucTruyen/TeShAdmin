@@ -55,7 +55,7 @@
             :key="index"
             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
           >
-            <ProductCard :item="item" @update="showUpdate"/>
+            <ProductCard :item="item" @update="showUpdate" @deleted="updateProduct"/>
           </div>
         </div>
       </div>

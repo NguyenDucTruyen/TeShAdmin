@@ -11,11 +11,30 @@
           </h6>
         </div>
       </div>
-      <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+      <div class="flex-auto px-4 lg:px-10 py-10 pt-0 container-form">
         <form @click.stop>
           <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
             Product Information
           </h6>
+          <div class="flex flex-wrap">
+            <div class="w-full lg:w-12/12 px-4">
+              <div class="relative w-full mb-3 flex justify-center">
+                <img :src="product.imageURL" alt="Image" class="h-[200px]" />
+              </div>
+            </div>
+          </div>
+          <div class="relative w-full mb-3">
+            <label
+              class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+              for="grid-password"
+              >Image URL</label
+            ><input
+                v-model="product.imageURL"
+                type="url"
+              class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+              value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+            />
+          </div>
           <div class="flex flex-wrap">
             <div class="w-full lg:w-6/12 px-4">
               <div class="relative w-full mb-3">
@@ -176,6 +195,20 @@ export default {
       selectCategory: '',
     }
   },
+  computed: {
+    checkData() {
+      return (
+        this.product.author &&
+        this.product.content &&
+        this.category.id &&
+        this.product.imageURL &&
+        this.product.name &&
+        this.product.price &&
+        this.product.quantity&&
+        this.product.page
+      )
+    },
+  },
   created() {
     this.product = { ...this.value }
     this.getCategory()
@@ -221,7 +254,13 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import '~/assets/scss/custom.scss';
-textarea {
+.container-form {
+  overflow-y: scroll;
   @include custom-scroll;
+  height: 600px;
+  padding-right: 30px;
+  textarea {
+    @include custom-scroll;
+  }
 }
 </style>
