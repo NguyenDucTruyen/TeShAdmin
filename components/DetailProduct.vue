@@ -221,14 +221,14 @@ export default {
       try {
         this.$fire.database.ref(`Product/${this.product.id}`).set({
           author: this.product.author,
-          category: this.category.id,
+          category: Number(this.category.id),
           content: this.product.content,
-          id: this.product.id,
+          id: Number(this.product.id),
           imageURL: this.product.imageURL,
           name: this.product.name,
-          page: this.product.page,
-          price: this.product.price,
-          quantity: this.product.quantity,
+          page: Number(this.product.page),
+          price: Number(this.product.price),
+          quantity: Number(this.product.quantity),
         })
         alert('Cập nhật sản phẩm thành công')
         this.$emit('updated')

@@ -23,7 +23,7 @@
     </div>
     <div class="overflow-x-auto relative sm:rounded-lg body">
       <div
-        class="w-full text-sm text-left text-gray-500 dark:text-gray-400 h-full"
+        class="w-full text-sm text-left dark:text-gray-400 h-full"
       >
         <div
           class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"

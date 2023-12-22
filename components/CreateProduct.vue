@@ -220,14 +220,14 @@ export default {
         }
         this.$fire.database.ref(`Product/${this.lengthCurrent}`).set({
           author: this.product.author,
-          category: this.category.id,
+          category: Number(this.category.id),
           content: this.product.content,
-          id: this.lengthCurrent,
+          id: Number(this.lengthCurrent),
           imageURL: this.product.imageURL,
           name: this.product.name,
-          page: this.product.page,
-          price: this.product.price,
-          quantity: this.product.quantity,
+          page: Number(this.product.page),
+          price: Number(this.product.price),
+          quantity: Number(this.product.quantity),
         })
         alert('Tạo sản phẩm thành công')
         console.log('category:', this.category.id)

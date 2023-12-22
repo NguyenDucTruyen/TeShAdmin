@@ -2,7 +2,7 @@
   <div class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 flex">
     <div
       scope="row"
-      class="w-[20%] py-4 px-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+      class="w-[20%] py-4 px-2 font-medium text-[#333] whitespace-nowrap"
     >
       <span class="child">
         {{ item.username ?? 'null' }}
