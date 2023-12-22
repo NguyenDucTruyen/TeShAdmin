@@ -3,7 +3,7 @@ export default function ({ route, redirect }) {
 
   if (!localStorage.getItem('logged')) {
     console.log('Dieu huong:', route.name)
-    if (!route.name.includes('index')) {
+    if (!route.name||!route.name.includes('index')) {
       return redirect('/')
     }
   } else if (!route.name) {
